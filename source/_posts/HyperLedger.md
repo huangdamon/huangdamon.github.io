@@ -1,6 +1,9 @@
 ---
 title: HyperLerger Fabric 学习笔记
 categories: Hyperledger
+tags:
+	- blockchain
+	- hyperledger
 ---
 # HyperLerger Fabric 概述#
 > 深度探索区块链 Hyperledger技术与应用
