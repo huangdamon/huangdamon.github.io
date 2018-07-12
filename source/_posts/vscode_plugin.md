@@ -4,8 +4,7 @@ categories: tools
 tags:
     - vscode
     - idea
-    - tools
-	- plugin
+    - tool
 ---
 
 # Visual Studio Code 插件
