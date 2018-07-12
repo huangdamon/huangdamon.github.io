@@ -47,24 +47,23 @@ tags:
 > 分析：
 
 ### 方案1 （超出时间限制） ###
-```Javascirpt
-var removeDuplicates = function(nums) {
-    var start = 1,
-	endInx = 1;
+```Python
+class Solution:
+    def removeDuplicates(self, nums):
+        if len(nums) < 2:
+            return len(nums)
 
-	if(nums.length === 0 || nums.length === 1){
-		return nums.length;
-	}else{
-		while(endInx < nums.length){
-			if(nums[endInx - 1] === nums[endInx]){
-				endInx++;
-			}else{
-				nums[start++] = nums[endInx];
-				endInx++;
-			}
-		}
-	}
-	return start;
+        lastDiffIndex = 0
+        cur = 1
+        while cur < len(nums):
+            if nums[lastDiffIndex] != nums[cur]:
+                lastDiffIndex += 1
+                nums[lastDiffIndex] = nums[cur]
+                cur += 1
+            else:
+                cur += 1
+
+        return lastDiffIndex + 1
 }
 ```
 
