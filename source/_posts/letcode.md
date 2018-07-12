@@ -67,5 +67,26 @@ class Solution:
 }
 ```
 
+s代表**start**, e代表着**end**，我们算法就是如果start和end对应的数字相同时，end继续前进。如果start和end的数字不同，start + 1 替换成end的数字，end继续前进。
 
-
+    step1:
+    1 1 1 2 2 4 5
+    s e
+    step2:
+	1 1 1 2 2 4 5
+	s   e
+	step3:
+	1 1 1 2 2 4 5   ---->	1 2 1 2 2 4 5
+	s     e					  s   e
+							
+	step4:
+	1 2 1 2 2 4 5
+	  s     e
+	step5:
+	1 2 1 2 2 4 5  ---->	1 2 4 2 2 4 5
+	  s       e                 s     e
+	 
+	step5:
+	1 2 4 2 2 4 5  ---->	1 2 4 5 2 4 5
+	    s       e                 s     e
+	result is length is the index of s.
