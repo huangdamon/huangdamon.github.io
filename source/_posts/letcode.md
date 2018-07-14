@@ -48,7 +48,7 @@ tags:
 ```
 > 分析：
 
-### 方案1 （超出时间限制） ###
+** 方案1 ** 
 ```Python
 class Solution:
     def removeDuplicates(self, nums):
@@ -122,6 +122,8 @@ step5:
 ```
 > 分析：
 
+
+**方案1**
 ```Python
 class Solution:
     def maxProfit(self, prices):
@@ -150,3 +152,60 @@ class Solution:
             sum += prices[priceLen - 1] - prices[startIdx]
         return sum
 ```
+解析：符合贪心算法，最大子区间的累加，当出现转折点时，股票卖出
+
+**方案2**
+
+```Python
+class Solution:
+    def maxProfit(self, nums):
+        sum = 0
+        nums_len = len(nums)
+
+        if nums_len < 2:
+            return sum
+        
+        for i in range(nums_len - 1):
+           if nums[i] < nums[i + 1]:
+               sum += nums[i + 1] - nums[i]
+        return sum
+```
+解析：其实思路相同    x1,x2,x3,x4 -->  x4 - x1 == (x2 - x1) + (x3 - x2) + (x4 - x3)
+
+----------
+### 旋转数组 ###
+给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
+**
+示例 1:**
+```Javascript
+输入: [1,2,3,4,5,6,7] 和 k = 3
+输出: [5,6,7,1,2,3,4]
+解释:
+向右旋转 1 步: [7,1,2,3,4,5,6]
+向右旋转 2 步: [6,7,1,2,3,4,5]
+向右旋转 3 步: [5,6,7,1,2,3,4]
+```
+**示例 2:**
+```Javascript
+输入: [-1,-100,3,99] 和 k = 2
+输出: [3,99,-1,-100]
+解释: 
+向右旋转 1 步: [99,-1,-100,3]
+向右旋转 2 步: [3,99,-1,-100]
+```
+**说明:**
+
+> 尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。
+> 要求使用空间复杂度为 O(1) 的原地算法。
+
+**方案1**
+
+```Python
+class Solution:
+    def rotate(self, nums, k):
+        nums_len = len(nums)
+        nums[:] =  nums[nums_len - k:] + nums[:nums_len-k]
+```
+
+解析：其实并没有运用到任何算法，只是用到了Python的切片来完成
+
