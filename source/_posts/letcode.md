@@ -287,3 +287,54 @@ class Solution:
 ```
 
 首先考虑到就是最高为有可能会进1， 所以先把数组**反转**之后循环计算，最后如果最高为是**9**并且补1，那么只要在数组最后添加1就满足。最最后，只要把数组**反转**回来就大功告成。
+
+### 283 移动零 
+
+给定一个数组 `nums`，编写一个函数将所有 `0` 移动到数组的末尾，同时保持非零元素的相对顺序。
+
+**示例:**
+
+```
+输入: [0,1,0,3,12]
+输出: [1,3,12,0,0]
+```
+
+**说明**:
+
+1. 必须在原数组上操作，不能拷贝额外的数组。
+2. 尽量减少操作次数。
+
+**方案1**
+
+```python
+class Solution:
+    def moveZeroes(self, nums):
+        start = 0
+        end = 1
+        nums_len = len(nums)
+        if nums_len == 1:
+            return
+
+        while end < nums_len or start < nums_len:
+            
+            while start < nums_len:
+                if nums[start] == 0:
+                    break
+                else:
+                    start = start + 1
+
+            while end < nums_len:
+                if end > start and nums[end] != 0:
+                    break
+                else:
+                    end = end + 1
+            
+            if start >= nums_len or end >= nums_len:
+                break
+            
+            nums[start], nums[end] = nums[end], nums[start]
+            end = end + 1
+            start = start + 1
+```
+
+思路 ： start定位到当前状态下的第一个0，end 定位到大于0位置的第一个非0.依次交换他们的位置
