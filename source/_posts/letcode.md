@@ -244,63 +244,46 @@ class Solution:
                maps[num] = num
         return True      
 ```
-------
+### 加一 
 
-### 两个数组的交集 II
+给定一个**非负整数**组成的**非空**数组，在该数的基础上加一，返回一个新的数组。
 
-给定两个数组，写一个方法来计算它们的交集。
+最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。
 
-**例如:**
-给定 *nums1* = `[1, 2, 2, 1]`, *nums2* = `[2, 2]`, 返回 `[2, 2]`.
+你可以假设除了整数 0 之外，这个整数不会以零开头。
 
-**注意：**
+**示例 1:**
 
--    输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。
--    我们可以不考虑输出结果的顺序。
-
-**跟进:**
-
-- 如果给定的数组已经排好序呢？你将如何优化你的算法？
-- 如果 *nums1* 的大小比 *nums2* 小很多，哪种方法更优？
-- 如果*nums2*的元素存储在磁盘上，内存是有限的，你不能一次加载所有的元素到内存中，你该怎么办？
-
-**方案1 （穷举法）**
-
-```python
-class Solution:
-    def intersect(self, nums1, nums2):
-        res = []
-        for num in nums1:
-            if num in nums2:
-                index = nums2.index(num)
-                res.append(nums2[index])
-                nums2[index] = None
-        return res
+```
+输入: [1,2,3]
+输出: [1,2,4]
+解释: 输入数组表示数字 123。
 ```
 
-![53174332793](C:\Users\HUANGDA\AppData\Local\Temp\1531743327935.png)
+**示例 2:**
 
-*跟进*：
+```
+输入: [4,3,2,1]
+输出: [4,3,2,2]
+解释: 输入数组表示数字 4321。
+```
 
-如果给定的数组已经排好序呢？你将如何优化你的算法？
+**方案1**
 
 ```python
 class Solution:
-    def intersect(self, nums1, nums2):
-        res = []
+    def plusOne(self, digits):
+        digits.reverse()
+        divisor = 1
+        for index, digit in enumerate(digits):
+            digits[index] = (digit + divisor) % 10
+            divisor = (digit + divisor) // 10
         
-        num1P = 0
-        num2P = 0
+        if divisor == 1:
+            digits.append(divisor)
 
-        while num1P < len(nums1) and num2P < len(nums2):
-            if nums1[num1P] == nums2[num2P]:
-                res.append(nums1[num1P])
-                num1P += 1
-                num2P += 1
-            elif nums1[num1P] > nums2[num2P]:
-                num2P += 1
-            else:
-                num1P += 1
-        return res
+        digits.reverse()
+        return digits
 ```
 
+首先考虑到就是最高为有可能会进1， 所以先把数组**反转**之后循环计算，最后如果最高为是**9**并且补1，那么只要在数组最后添加1就满足。最最后，只要把数组**反转**回来就大功告成。
