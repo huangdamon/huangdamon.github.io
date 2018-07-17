@@ -93,7 +93,6 @@ step5:
     result is length is the index of s.
 ```
 
-
 ----------
 ### 买卖股票的最佳时机 II ###
 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
@@ -209,7 +208,6 @@ class Solution:
 
 解析：其实并没有运用到任何算法，只是用到了Python的切片来完成
 
-
 ----------
 
 ### 存在重复 ###
@@ -246,3 +244,63 @@ class Solution:
                maps[num] = num
         return True      
 ```
+------
+
+### 两个数组的交集 II
+
+给定两个数组，写一个方法来计算它们的交集。
+
+**例如:**
+给定 *nums1* = `[1, 2, 2, 1]`, *nums2* = `[2, 2]`, 返回 `[2, 2]`.
+
+**注意：**
+
+-    输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。
+-    我们可以不考虑输出结果的顺序。
+
+**跟进:**
+
+- 如果给定的数组已经排好序呢？你将如何优化你的算法？
+- 如果 *nums1* 的大小比 *nums2* 小很多，哪种方法更优？
+- 如果*nums2*的元素存储在磁盘上，内存是有限的，你不能一次加载所有的元素到内存中，你该怎么办？
+
+**方案1 （穷举法）**
+
+```python
+class Solution:
+    def intersect(self, nums1, nums2):
+        res = []
+        for num in nums1:
+            if num in nums2:
+                index = nums2.index(num)
+                res.append(nums2[index])
+                nums2[index] = None
+        return res
+```
+
+![53174332793](C:\Users\HUANGDA\AppData\Local\Temp\1531743327935.png)
+
+*跟进*：
+
+如果给定的数组已经排好序呢？你将如何优化你的算法？
+
+```python
+class Solution:
+    def intersect(self, nums1, nums2):
+        res = []
+        
+        num1P = 0
+        num2P = 0
+
+        while num1P < len(nums1) and num2P < len(nums2):
+            if nums1[num1P] == nums2[num2P]:
+                res.append(nums1[num1P])
+                num1P += 1
+                num2P += 1
+            elif nums1[num1P] > nums2[num2P]:
+                num2P += 1
+            else:
+                num1P += 1
+        return res
+```
+
