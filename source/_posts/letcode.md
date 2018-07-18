@@ -317,3 +317,57 @@ class Solution:
 ```
 
 思路: 头尾交换
+
+### 颠倒整数
+
+给定一个 32 位有符号整数，将整数中的数字进行反转。
+
+**示例 1:**
+
+```
+输入: 123
+输出: 321
+```
+
+ **示例 2:**
+
+```
+输入: -123
+输出: -321
+```
+
+**示例 3:**
+
+```
+输入: 120
+输出: 21
+```
+
+**注意:**
+
+假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。
+
+**方案1**
+
+```python
+class Solution:
+    def reverse(self, x):
+        isPositive = True if x > 0 else False
+        num = list(str(abs(x)))
+        num.reverse()
+        new_num = int(''.join(num))
+
+        if isPositive:
+            if new_num > 2 ** 31 - 1:
+                return 0
+            else:
+                return new_num
+        elif new_num > 2 ** 31:
+            return 0
+
+        return new_num * -1
+```
+
+![53191672569](C:\Users\HUANGDA\AppData\Local\Temp\1531916725696.png)
+
+思路：变成字符串来处理，当然也是因为python语言的便利性
