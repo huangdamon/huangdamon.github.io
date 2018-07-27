@@ -7,7 +7,10 @@ tags:
     - algorithm
 ---
 # leetCode 学习笔记 #
+> 一刷 leetcode，因此只要通过就是完成。等待二刷完善和改进代码！！！！！
+
 ## 数组 ##
+
 ### 从排序数组中删除重复项 ###
 给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
 
@@ -287,3 +290,84 @@ class Solution:
 ```
 
 首先考虑到就是最高为有可能会进1， 所以先把数组**反转**之后循环计算，最后如果最高为是**9**并且补1，那么只要在数组最后添加1就满足。最最后，只要把数组**反转**回来就大功告成。
+
+## 字符串
+
+### 反转字符串
+
+请编写一个函数，其功能是将输入的字符串反转过来。
+
+**示例：**
+
+```
+输入：s = "hello"
+返回："olleh"
+```
+
+**方案1**
+
+```python
+class Solution:
+    def reverseString(self, s):
+        s_array = list(s)
+        for i in range((len(s_array) // 2)):
+            endInx = len(s_array) - i - 1
+            s_array[i], s_array[endInx] = s_array[endInx], s_array[i]
+        return ''.join(s_array)
+```
+
+思路: 头尾交换
+
+### 颠倒整数
+
+给定一个 32 位有符号整数，将整数中的数字进行反转。
+
+**示例 1:**
+
+```
+输入: 123
+输出: 321
+```
+
+ **示例 2:**
+
+```
+输入: -123
+输出: -321
+```
+
+**示例 3:**
+
+```
+输入: 120
+输出: 21
+```
+
+**注意:**
+
+假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。
+
+**方案1**
+
+```python
+class Solution:
+    def reverse(self, x):
+        isPositive = True if x > 0 else False
+        num = list(str(abs(x)))
+        num.reverse()
+        new_num = int(''.join(num))
+
+        if isPositive:
+            if new_num > 2 ** 31 - 1:
+                return 0
+            else:
+                return new_num
+        elif new_num > 2 ** 31:
+            return 0
+
+        return new_num * -1
+```
+
+![53191672569](C:\Users\HUANGDA\AppData\Local\Temp\1531916725696.png)
+
+思路：变成字符串来处理，当然也是因为python语言的便利性
