@@ -15,17 +15,16 @@ tags:
 
 1. 属性
 
-	- **async**（是否立即下载），**charset**（字符集，浏览器大部分忽略）， **language**（已废弃），**src**（执行代码文件），**defer**（延迟执行） 以上五个属性，平常使用过程中，很少会接触，同时也不是特别重要。
+	- 📍`async`（是否立即下载），📍`charset`（字符集，浏览器大部分忽略）， 📍`language`（已废弃），📍`src`（执行代码文件），📍`defer`（延迟执行） 以上五个属性，平常使用过程中，很少会接触，同时也不是特别重要。
+	- ⭐`type`（MIME类型）：表示我们编写代码使用的脚本语言的内容类型
 
-	- **type**（MIME类型）：表示我们编写代码使用的脚本语言的内容类型
-
-  > 知识扩展
+	>
+  > ⚠️知识扩展
   >
   > 什么是 [MIME](https://en.wikipedia.org/wiki/MIME) ?  Multipurpose Internet Mail Extensions ,字面上了解就是 多功能的网络邮件扩展
-  >
   > 简单理解就是，特定扩展名对应相应类型的MIME
 
-书本中详细的介绍了这6个属性的相关用法，但是由于很少使用到，所以不再做详细解释。请Google或者Baidu查找相关资料。
+书本中详细的介绍了这6个属性的相关用法，但是由于很少使用到，所以不再做详细解释。请`Google`或者`Baidu`查找相关资料。
 
 ## 第三章 基本概念
 
@@ -34,28 +33,28 @@ tags:
 ### 语法
 
 - 区分大小写
-- 标识符： 字符，下划线(_)，美元符($)，数字  （**第一个不能是数字**）
+- 标识符： 字符，下划线(`_`)，美元符(`$`)，数字  （❗❗❗ 第一个不能是数字）
   - 驼峰大小写格式（推荐） : helloWorld
-  - 注释： /***/   或者  //
+  - 注释： `/***/`   或者  `//`
 
 ### 数据类型
 
-- typeof (重要：返回值是**字符串**)
+- `typeof` (重要：返回值是**字符串**)
 
-| typeof {} or                                                                                        | 结果        |
-|-----------------------------------------------------------------------------------------------------|-------------|
-| typeof undefined <br />typeof 一个声明但未初始化的变量<br />typeof 一个未声明的变量<br />typeof NAN | “undefined“ |
-| typeof  true<br />typeof false                                                                      | “boolean“   |
-| typeof "hello"<br />typeof 'world'<br />typeof "1234"                                               | “string“    |
-| typeof 1234                                                                                         | “number“    |
-| typeof {}<br />**typeof []**<br />**typeof null**                                                   | “object“    |
-| typeof function(){}<br />typeof Number<br />typeof String                                           | “function“  |
+|                                                                                                            | 结果        |
+|------------------------------------------------------------------------------------------------------------|-------------|
+| ` typeof undefined `<br /> `typeof a /// a声明但未初始化`<br />`typeof a ///a未声明`<br />```typeof NAN``` | “undefined“ |
+| `typeof  true`<br />`typeof false`                                                                         | “boolean“   |
+| `typeof "hello"`<br />`typeof 'world'`<br />`typeof "1234"`                                                | “string“    |
+| `typeof 1234`                                                                                              | “number“    |
+| `typeof {}`<br /> ⭐`typeof []` <br />⭐`typeof null`                                                        | “object“    |
+| `typeof function(){}`<br />`typeof Number`<br />`typeof String`                                            | “function“  |
 
 #### Null
 
-null值表示一个空对象指针，而这也表明了typeof的值是一个”object“的原因
+`null`值表示一个空对象指针，而这也表明了`typeof`的值是一个”object“的原因
 
-> 知识扩展
+> ⚠️知识扩展
 >
 > null 和 undefined的区别 ？
 >
@@ -73,10 +72,10 @@ null值表示一个空对象指针，而这也表明了typeof的值是一个”o
 
 | 数据类型  | False     |
 | --------- | --------- |
-| Number    | 0和NAN    |
-| String    | ""        |
-| Object    | null      |
-| Undefined | undefined |
+| `Number`    | `0`和`NAN`    |
+| `String`    | `""`       |
+| `Object`    | `null`      |
+| `Undefined` | `undefined` |
 
 #### Number
 
@@ -104,7 +103,7 @@ parseInt("")         /// NaN
 
 #### Object
 
-Object实例的属性和方法，一共7个(只列重点关注)：
+`Object`实例的属性和方法，一共7个(只列重点关注)：
 ```JavaScript
 Object.HasOwnProperty(proName)         /// 属性是否在实例对象中
 Object.isPrototypeOf(object)           /// 判断是否对象原型
@@ -121,7 +120,7 @@ Object.propertyIsEnumerable(proName)   /// 是否支持for-in语句
 ^   /// 异或
 ```
 
-> ❗ 知识扩展
+> ⚠️ 知识扩展
 > ```JavaScript
 > ~(A & B) === ~A | ~B     /// 与非, 含义：有0 出 1，全 1 出 0
 > ~(A | B) === ~A & ~ B    /// 或非, 含义：有1 出 0，全 0 出 1
