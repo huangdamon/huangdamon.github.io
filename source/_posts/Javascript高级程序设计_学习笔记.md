@@ -194,5 +194,109 @@ null == 0                                      ///  false
 ### 语句
 
 > 由于语句相对于稍微有经验的程序员来说，都是比较熟悉，因此就不做太多详细的解析，只是列举相关的表达式
+####条件，循环
+```JavaScript
+if(condition) statementOne else statementTwo
+do {statement} while (condition)
+while(expression) statement
+for(initialization; expression; post-loop-expression) statement
+for(proterty in expression) statement
+```
+重点讲解下 `for in` 语句：
+- 如果 expression是`undefined`或者`null`,会抛出错误(❗❗❗ ECMA5更正这个行为)
 
-待续
+```JavaScript
+break       /// 退出整个循环
+continue    /// 退出当前循环，从顶部继续循环
+
+switch(expression){
+	case value: statement break;
+	default: statement
+}
+```
+####函数
+1. 理解参数
+	- 传入参数 <= 定义参数（参数内部是用一个数组来表示）
+	- `arguments` 读取到传入的参数
+2. 无重载
+
+## 第四章 作用域和内存问题
+#### 基本类型和引用类型
+>值类型的操作，就是保存在变量里面真实的值<br>
+>类型的操作, 操作都是保存在内存中的对象
+
+1. 传递参数 (❗❗❗ ECMAScript 中所有函数的参数都是**按值**传递,对于引用类型，这里的值是指**栈区的值**)
+	- ⭐错误理解：在局部作用域中修改对象会在全局作用域反映出来，就说明参数是按引用传递的。
+```JavaScript
+//// 最终结果是，name并没有被修改为“hello world”.当在函数内重写obj对象时，这个变量引用的就是一个局部变量
+function setName(obj) {
+    obj.name = "hello wolrd";
+    obj = new Object();
+    obj.name = "Greg";
+}
+```
+#### 执行环境和作用域
+>执行环境：定义了变量或者函数有权访问其他数据<br>
+>作用域链：保证对执行环境有权访问的所有变量和函数的有序访问
+
+1. 作用域链
+	-	允许向上搜索作用域链，不允许向下搜索
+
+2.作用域
+  - 没有块级作用域
+  - 声明变量需注意：如果没有var声明一个变量，那么其作用域就会升级到全局变量（严格模式下会导致错误）
+
+## 第五章 引用类型
+ > 引用类型： 是一种数据结构，用于将数据和功能组织在一起
+### Object
+ 1. 创建对象两种方式
+ ```JavaScript
+ var obj1 = new Object()   /// new 对象的方式
+
+ var obj2 = {              /// 字面量的方式
+	 name: "huangda"
+ }
+ ```
+ 2. 调用对象的方式
+ ```javascript
+ obj.name
+ obj['name huangda']   //当字符是常量字符或者存在空格时，这个才能访问
+ ```
+### Array
+> 数组自带的各种方法的具体使用，我就不在这里详细介绍，只列举比较重要的部分。<br>
+> `Lodash`能解决大部分问题
+
+1. slice()方法
+  	> 基于当前数组中的一个或者多个项创建一个⭐新数组
+2. splice()方法
+    > 向数组的中部插入项
+3. 迭代方法
+   ```javascript
+  	var nums = [1, 2, 3]
+		/// 所有返回true，结果为true
+		nums.every((item, index, array) => {})
+		/// 存在一个true，结果为true
+		nums.some((item, index, array) => {})
+		/// 返回结果是一个数组
+		nums.map((item, index, array) => {})
+		```
+
+4. 归并方法
+	```javascript
+		var nums = [1, 2, 3]
+		/// 左边开始归并
+		nums.reduce((pre, cur, index, array) => {})
+		/// 右边开始归并
+		nums.reduceRight((pre, cur, index, array) => {})
+		```
+### 正则表达式 RegExp类型
+> 不过多介绍正则匹配，会在其他文章中，做更详细的介绍<br>
+> flags : `g`: 是全局模式   `i`: 忽略大小写  `m`: 多行模式
+```javascript
+	var expression = / pattern / flags
+```
+1. 实例方法
+	- exec(text) 执行匹配
+	- test(text) 判断是否匹配，返回⭐布尔值
+### Function 类型
+待续   111页
