@@ -43,14 +43,14 @@ tags:
 
 - `typeof` (重要：返回值是**字符串**)
 
-|                                                                                                            | 结果        |
-|------------------------------------------------------------------------------------------------------------|-------------|
-| ` typeof undefined `<br /> `typeof a /// a声明但未初始化`<br />`typeof a ///a未声明`<br />```typeof NAN``` | “undefined“ |
-| `typeof  true`<br />`typeof false`                                                                         | “boolean“   |
-| `typeof "hello"`<br />`typeof 'world'`<br />`typeof "1234"`                                                | “string“    |
-| `typeof 1234`                                                                                              | “number“    |
-| `typeof {}`<br /> ⭐`typeof []` <br />⭐`typeof null`                                                        | “object“    |
-| `typeof function(){}`<br />`typeof Number`<br />`typeof String`                                            | “function“  |
+|                                                              | 结果        |
+| ------------------------------------------------------------ | ----------- |
+| ` typeof undefined `<br />`typeof a /// a声明但未初始化`<br />`typeof a ///a未声明`<br />```typeof NAN``` | “undefined“ |
+| `typeof  true`<br />`typeof false`                           | “boolean“   |
+| `typeof "hello"`<br />`typeof 'world'`<br />`typeof "1234"`  | “string“    |
+| `typeof 1234`                                                | “number“    |
+| `typeof {}`<br />⭐`typeof []` <br />⭐`typeof null`           | “object“    |
+| `typeof function(){}`<br />`typeof Number`<br />`typeof String` | “function“  |
 
 #### Null
 
@@ -70,7 +70,7 @@ tags:
 
 #### Boolean
 
-只要记住这些false的转换规则
+只要记住这些false的转换规则，否则就是true
 
 | 数据类型  | False     |
 | --------- | --------- |
@@ -84,7 +84,7 @@ tags:
 > Javascript中所有的数字都是以IEEE-754标准格式表示的，因为浮点数的表示都是不精确
 > 因此进行浮点数运算时，还是选择一个靠谱的第三方库。
 >
-> reference [：bignumber.js](https://github.com/MikeMcl/bignumber.js) and     [big.js](https://github.com/MikeMcl/big.js)
+> reference： [bignumber.js](https://github.com/MikeMcl/bignumber.js) and [big.js](https://github.com/MikeMcl/big.js)
 
 1. 数值范围
 ```JavaScript
