@@ -228,15 +228,23 @@ switch(expression){
 1. 传递参数 (❗❗❗ ECMAScript 中所有函数的参数都是**按值**传递,对于引用类型，这里的值是指**栈区的值**)
 	- ⭐错误理解：在局部作用域中修改对象会在全局作用域反映出来，就说明参数是按引用传递的。
 ```JavaScript
-//// 最终结果是，name并没有被修改为“hello world”.当在函数内重写obj对象时，这个变量引用的就是一个局部变量
+//// 最终结果是，name并没有被修改为“Greg”.当在函数内重写obj对象时，这个变量引用的就是一个局部变量
 function setName(obj) {
     obj.name = "hello wolrd";
     obj = new Object();
     obj.name = "Greg";
 }
+
+var person = new Object();
+setName(person);
+console.log(person.name)
 ```
+2. **typeof** 用于检测基本数据类型是非常有效，但是检测引用类型时就用处不大。
+
 #### 执行环境和作用域
->执行环境：定义了变量或者函数有权访问其他数据<br>
+
+>执行环境：定义了变量或者函数有权访问其他数据
+>
 >作用域链：保证对执行环境有权访问的所有变量和函数的有序访问
 
 1. 作用域链
@@ -269,17 +277,18 @@ function setName(obj) {
 1. slice()方法
   	> 基于当前数组中的一个或者多个项创建一个⭐新数组
 2. splice()方法
+
     > 向数组的中部插入项
 3. 迭代方法
    ```javascript
-  	var nums = [1, 2, 3]
+    	var nums = [1, 2, 3]
 		/// 所有返回true，结果为true
 		nums.every((item, index, array) => {})
 		/// 存在一个true，结果为true
 		nums.some((item, index, array) => {})
 		/// 返回结果是一个数组
 		nums.map((item, index, array) => {})
-		```
+	```
 
 4. 归并方法
 	```javascript
@@ -288,7 +297,7 @@ function setName(obj) {
 		nums.reduce((pre, cur, index, array) => {})
 		/// 右边开始归并
 		nums.reduceRight((pre, cur, index, array) => {})
-		```
+	```
 ### 正则表达式 RegExp类型
 > 不过多介绍正则匹配，会在其他文章中，做更详细的介绍<br>
 > flags : `g`: 是全局模式   `i`: 忽略大小写  `m`: 多行模式
@@ -296,7 +305,73 @@ function setName(obj) {
 	var expression = / pattern / flags
 ```
 1. 实例方法
-	- exec(text) 执行匹配
-	- test(text) 判断是否匹配，返回⭐布尔值
-### Function 类型
-待续   111页
+  - exec(text) 执行匹配
+  - test(text) 判断是否匹配，返回⭐布尔值
+
+  ### Function 类型``````````````````````````````
+
+## 第七章 函数表达式
+
+定义函数的两种方式：**函数声明**和**函数表达式**
+
+```javascript
+// 函数声明
+// 1. 函数声明提升
+function functionName() {}
+
+// 函数表达式
+let functionName = function(){}   // 匿名函数（lamda函数）
+```
+
+在处理递归函数时，显然使用 **arguments.callee** 来解决函数指向其他变量空间导致错误
+
+```javascript
+function factorial(num){
+    if(num <= 1){
+        return 1;
+    }
+    return num * factorial(num - 1);   // return num * arguments.callee(num - 1)
+}
+
+//但是严格模式下并不生效，所以要采用命名函数表达式
+var factorial = (function f(num) {
+    if(num <= 1){
+        return 1;
+    }
+    return num * f(num - 1); 
+})
+
+```
+
+闭包在我的理解，就是一个函数包着另外一个函数，并且里面的函数有访问外部函数的权利。
+
+```javascript
+
+```
+
+⭐值得注意的是，闭包只能取得包含函数中任何变量的最后一个值
+
+```javascript
+function create() {
+    let result = new Array();
+    for(let i = 0; i < 3; i++){
+        result[i] = function() {
+            return i;
+        }
+    }
+    return result;
+}
+
+// 结果都是2，想达到预期，则需要另外一个闭包
+function create() {
+    let result = new Array();
+    for(let i = 0; i < 3; i++){
+        result[i] = (function(i) {
+            return i;
+        })(i)
+    }
+    return result;
+}
+```
+
+​																																																																																																																																																																																										
