@@ -15,14 +15,16 @@ tags:
 
 1. 属性
 
-	- 📍`async`（是否立即下载），📍`charset`（字符集，浏览器大部分忽略）， 📍`language`（已废弃），📍`src`（执行代码文件），📍`defer`（延迟执行） 以上五个属性，平常使用过程中，很少会接触，同时也不是特别重要。
-	- ⭐`type`（MIME类型）：表示我们编写代码使用的脚本语言的内容类型
+  - 📍`async`（是否立即下载），📍`charset`（字符集，浏览器大部分忽略）， 📍`language`（已废弃），📍`src`（执行代码文件），📍`defer`（延迟执行） 以上五个属性，平常使用过程中，很少会接触，同时也不是特别重要。
+  - `async`和`defer`不会阻塞DOM的加载渲染(⚠️延迟脚本放在页面底部仍然是最好的选择)
+      - `defer`适用于外部的脚本，按顺序执行，并且会在`DOMContentLoaded`和`load`事件之前⚠️现实中，延迟脚本不一定按顺序执行，也不一定在`DOMContentLoaded`之前
+      - `async`适用于外联脚本，无执行顺序，在`load`前，但是不能保证与`DOMContentLoaded`之间的顺序
+  - ⭐`type`（MIME类型）：表示我们编写代码使用的脚本语言的内容类型
 
-	>
-  > ⚠️知识扩展
   >
-  > 什么是 [MIME](https://en.wikipedia.org/wiki/MIME) ?  Multipurpose Internet Mail Extensions ,字面上了解就是 多功能的网络邮件扩展
-  > 简单理解就是，特定扩展名对应相应类型的MIME
+  > > ⚠️知识扩展
+  > > > 什么是 [MIME](https://en.wikipedia.org/wiki/MIME) ?  Multipurpose Internet Mail Extensions ,字面上了解就是 多功能的网络邮件扩展
+  > > > 简单理解就是，特定扩展名对应相应类型的MIME
 
 书本中详细的介绍了这6个属性的相关用法，但是由于很少使用到，所以不再做详细解释。请`Google`或者`Baidu`查找相关资料。
 
