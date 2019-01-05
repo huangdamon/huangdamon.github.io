@@ -382,11 +382,40 @@ person.name = "huangda";
 console.log(person.age); ////13
 ```
 
+### 创建对象
+
+1. 工厂模式
+
+   ```javascript
+   function createPerson() {
+       let obj = new Object();
+       obj.name = "Damon";
+       return obj;
+   }
+   ```
+
+2. 构造函数
+
+   ```javascript
+   function Person() {
+       this.name = "Damon";
+   }
+   ```
+
 ⚠️注意：
 
-1. 当为对象实例添加属性时，会`屏蔽`原型对象上保存的同名属性,如果想要继续拿到原型对象上的同名属性值，可以通过`delete`对象实例上的属性。
+1. 只要通过`new`操作符来调用，那他就可以作为构造函数，否则和普通函数没什么区别。
+
+### 继承
+
+❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ ❗ 待续
+
+⚠️注意：
+
+1. 当为对象实例添加属性时，会❗ `屏蔽`原型对象上保存的同名属性,如果想要继续拿到原型对象上的同名属性值，可以通过`delete`对象实例上的属性。
 2. HasOwnProperty() 判断属性是否存在对象实例上。
 3. 由于在原型中搜索时一次搜索，因为在实例后给原型添加属性也是没问题，实例还是可以访问这个属性。
+4. 
 
 ## 第七章 函数表达式
 
@@ -423,10 +452,6 @@ var factorial = (function f(num) {
 
 闭包在我的理解，就是一个函数包着另外一个函数，并且里面的函数有访问外部函数的权利。
 
-```javascript
-
-```
-
 ⭐值得注意的是，闭包只能取得包含函数中任何变量的最后一个值
 
 ```javascript
@@ -452,4 +477,45 @@ function create() {
 }
 ```
 
-​																																																																																																																																																																																										
+⚠️注意：
+
+匿名函数的this并没有绑定到任何一个对象上，因此是指向window，内部函数在搜索this和argument时，只会搜索到其活动对象为止。
+
+匿名函数： https://www.cnblogs.com/pssp/p/5216668.html
+
+### 内存泄漏问题
+
+循环引用，下面例子中，element的onclick事件引用了element
+
+```javascript
+function handle() {
+    let element = document.getElementById('id');
+    element.onclick = function() {
+        alert(element.id);
+    };
+}
+
+// 以下处理方法还是不行，虽然没有直接引用element对象，但是别忘记，闭包包含函数的整个活动对象。
+function handle() {
+    let element = document.getElementById('id');
+    let id = element.id;
+    element.onclick = function() {
+        alert(id);
+    };
+}
+
+// best
+function handle() {
+    let element = document.getElementById('id');
+    let id = element.id;
+    element.onclick = function() {
+        alert(id);
+    };
+    element = null;
+}
+```
+
+​	
+
+​																																																																																																																																																																																									
+
