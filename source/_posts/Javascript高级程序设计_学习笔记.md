@@ -45,7 +45,7 @@ tags:
 
 |                                                              | 结果        |
 | ------------------------------------------------------------ | ----------- |
-| ` typeof undefined `<br />`typeof a /// a声明但未初始化`<br />`typeof a ///a未声明`<br />```typeof NAN``` | “undefined“ |
+| `typeof undefined `<br />`typeof a /// a声明但未初始化`<br />`typeof a ///a未声明`<br />`typeof NAN` | “undefined“ |
 | `typeof  true`<br />`typeof false`                           | “boolean“   |
 | `typeof "hello"`<br />`typeof 'world'`<br />`typeof "1234"`  | “string“    |
 | `typeof 1234`                                                | “number“    |
@@ -138,7 +138,7 @@ Object.propertyIsEnumerable(proName)   /// 是否支持for-in语句
 
 下面列举有关非布尔值的操作结果：
 
-- **非运算**，无论什么值，都会⭐<u>**一定**</u>返回一个布尔值：
+- **非运算**，无论什么值，⭐<u>**一定**</u>返回一个布尔值：
 
   ```javascript
   var obj1 = {}
@@ -216,7 +216,8 @@ switch(expression){
 	default: statement
 }
 ```
-####函数
+### 函数
+
 1. 理解参数
 	- 传入参数 <= 定义参数（参数内部是用一个数组来表示）
 	- `arguments` 读取到传入的参数
@@ -224,8 +225,7 @@ switch(expression){
 
 ## 第四章 作用域和内存问题
 #### 基本类型和引用类型
->值类型的操作，就是保存在变量里面真实的值<br>
->类型的操作, 操作都是保存在内存中的对象
+>值类型的操作，就是保存在变量里面真实的值<br>引用类型的操作, 操作都是保存在内存中的对象
 
 1. 传递参数 (❗❗❗ ECMAScript 中所有函数的参数都是**按值**传递,对于引用类型，这里的值是指**栈区的值**)
 	- ⭐错误理解：在局部作用域中修改对象会在全局作用域反映出来，就说明参数是按引用传递的。
@@ -310,7 +310,83 @@ console.log(person.name)
   - exec(text) 执行匹配
   - test(text) 判断是否匹配，返回⭐布尔值
 
-  ### Function 类型``````````````````````````````
+  ### Function 类型
+
+1. `函数名`其实就是指向函数对象的指针(函数是对象，函数名是指针)
+2. 函数没有重载
+
+```javascript
+function addNumber(num) {
+    return num + 100;
+}
+
+function addNumber(num) {
+    return num + 200;
+}
+
+/*
+ 因为函数名是指针，因为最后函数名addNumber指向了第二个函数
+*/
+```
+
+## 第六章 面向对象的程序设计
+
+ECMA5中，定义了两种属性，一个是`数据属性`，另一个是`访问其属性`
+
+1. 数据属性
+   1. `Configuration `  
+      1. 能否detele属性来重新定义
+      2. 能否修改属性的特性
+      3. 能否把属性修改为访问器属性
+   2. `Enumerable`
+      1. 是否能 for-in
+   3. `Writable`
+      1. 是否能修改
+   4. `Value`
+      1. 包含这个属性的数据值
+
+```javascript
+let person = {};
+Object.defineProperty(person, "name", {
+   writable: false,
+   value: "Nicholas"
+});
+
+person.name = "Damon";
+console.log(person.name)  //// Nicholas
+```
+
+2. 访问器属性
+   1. `Configuration` 与数据属性一样
+   2. `Enumerable` 与数据属性一样
+   3. `Get` 读取属性时调用
+   4. `Set ` 写入属性时调用
+
+```javascript
+let person = {
+    name: "Damon",
+    age: 12
+};
+
+Object.defineProperty(person, "name", {
+   get: function() {
+       return this.name
+   },
+   set: function(newValue) {
+       this.name = newValue;
+       this.age = 13;
+   }
+});
+
+person.name = "huangda";
+console.log(person.age); ////13
+```
+
+⚠️注意：
+
+1. 当为对象实例添加属性时，会`屏蔽`原型对象上保存的同名属性,如果想要继续拿到原型对象上的同名属性值，可以通过`delete`对象实例上的属性。
+2. HasOwnProperty() 判断属性是否存在对象实例上。
+3. 由于在原型中搜索时一次搜索，因为在实例后给原型添加属性也是没问题，实例还是可以访问这个属性。
 
 ## 第七章 函数表达式
 
