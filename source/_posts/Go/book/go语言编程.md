@@ -388,3 +388,69 @@ type Y struct {
 // *log.Logger  === *Logger
 ```
 
+#### 可见性
+
+Go语言的可见性是大小写字母区分， **Go语言中符号的可访问性是包一级的而不是类型一级的**
+
+#### 接口
+
+只要实现接口要求的所有函数，就等于实现了该接口
+
+```go
+type File struct {
+}
+
+func (f *File) Read(buf []byte) (n int, err error) {
+    return 1, nil
+}
+func (f *File) Write(buf []byte) (n int, err error) {
+    retun 2, nil
+}
+
+type IFile interface {
+    Read(buf []byte) (n int, err error)
+    Write(buf []byte) (n int, err error)
+}
+
+type IReader interface {
+	Read(buf []byte) (n int, err error)
+}
+
+var file1 IFile = new(File)
+var file2 IReader = new(File)
+```
+
+##### 接口赋值
+
+1. 两个接口定义的方法相同
+2. 如果A的方法列表是B的方法列表的子集，那么接口B可以赋值给接口A
+
+##### 接口查询
+
+```go
+var file1 Write = ...
+if file5, ok := file1.(two.IStream); ok {
+}
+
+// 检查file1接口指向的对象实例是否实现了two.IStream接口
+```
+
+##### 接口组合
+
+```go
+type ReadWriter interface {
+    Reader
+    Writer
+}
+
+// 等价于
+type ReadWriter interface {
+    Read(p []byte) (n int, err error)
+    Write(p []byte) (n int, err error)
+}
+```
+
+## 并发编程
+
+
+
