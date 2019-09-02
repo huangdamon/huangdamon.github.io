@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="blockchain,hyperledger,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HyperLerger Fabric 概述 深度探索区块链 Hyperledger技术与应用  开始这篇博客的起因，就是因为自己有参与公司的区块链项目，但是由于项目没有太多涉及到区块链的底层的学习，所以希望通过自己的学习，能够对这个开源的项目有更加深入的了解。内容中，不会过多解释区块链的详细概念，如果有需要，后续会补上。内容还在持续更新中 区块链概述现阶段，区块链划分成区块链1.0/2.0/3.0">
+<meta name="keywords" content="blockchain,hyperledger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HyperLerger Fabric 学习笔记">
+<meta property="og:url" content="http://www.love-yewenling.cn/2019/09/02/HyperLedger/index.html">
+<meta property="og:site_name" content="Where is the life">
+<meta property="og:description" content="HyperLerger Fabric 概述 深度探索区块链 Hyperledger技术与应用  开始这篇博客的起因，就是因为自己有参与公司的区块链项目，但是由于项目没有太多涉及到区块链的底层的学习，所以希望通过自己的学习，能够对这个开源的项目有更加深入的了解。内容中，不会过多解释区块链的详细概念，如果有需要，后续会补上。内容还在持续更新中 区块链概述现阶段，区块链划分成区块链1.0/2.0/3.0">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-02T19:06:29.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HyperLerger Fabric 学习笔记">
+<meta name="twitter:description" content="HyperLerger Fabric 概述 深度探索区块链 Hyperledger技术与应用  开始这篇博客的起因，就是因为自己有参与公司的区块链项目，但是由于项目没有太多涉及到区块链的底层的学习，所以希望通过自己的学习，能够对这个开源的项目有更加深入的了解。内容中，不会过多解释区块链的详细概念，如果有需要，后续会补上。内容还在持续更新中 区块链概述现阶段，区块链划分成区块链1.0/2.0/3.0">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.love-yewenling.cn/2019/09/02/HyperLedger/">
+
+
+
+
+
+  <title>HyperLerger Fabric 学习笔记 | Where is the life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Where is the life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Love YWL</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.love-yewenling.cn/2019/09/02/HyperLedger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Damon Huang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Where is the life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HyperLerger Fabric 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-02T19:06:29+00:00">
+                2019-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hyperledger/" itemprop="url" rel="index">
+                    <span itemprop="name">Hyperledger</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="HyperLerger-Fabric-概述"><a href="#HyperLerger-Fabric-概述" class="headerlink" title="HyperLerger Fabric 概述"></a>HyperLerger Fabric 概述</h1><blockquote>
+<p>深度探索区块链 Hyperledger技术与应用</p>
+</blockquote>
+<p>开始这篇博客的起因，就是因为自己有参与公司的区块链项目，但是由于项目没有太多涉及到区块链的底层的学习，所以希望通过自己的学习，能够对这个开源的项目有更加深入的了解。内容中，不会过多解释区块链的详细概念，如果有需要，后续会补上。内容还在持续更新中</p>
+<h2 id="区块链概述"><a href="#区块链概述" class="headerlink" title="区块链概述"></a>区块链概述</h2><p>现阶段，区块链划分成区块链1.0/2.0/3.0三个阶段：</p>
+<ol>
+<li>我们可以把比特币看作为区块链的1.0阶段。</li>
+<li>智能合约（Smart Contrct)就是2.0的阶段。</li>
+<li>把区块链应用范围扩展到各行各业 3.0 待续中。</li>
+</ol>
+<h3 id="区块链层次模型"><a href="#区块链层次模型" class="headerlink" title="区块链层次模型"></a>区块链层次模型</h3><ol>
+<li>数据层： 封装了底层数据区块的链式结构，非对称公私钥数据加密技术和时间戳。</li>
+<li>网络层： P2P组网机制，数据传播机制和数据验证机制。</li>
+<li>共识层： 网络节点的各类共识机制算法。</li>
+<li>激励层，合约层，应用层。</li>
+</ol>
+<h3 id="区块链的共识算法"><a href="#区块链的共识算法" class="headerlink" title="区块链的共识算法"></a>区块链的共识算法</h3><ol>
+<li><strong>POW（Proof of Work)</strong>: 基于工作量的证明的共识算法。<ul>
+<li>缺点： 资源消耗高，性能效率非常低，<strong>不太适合商业应用</strong>。</li>
+</ul>
+</li>
+<li><strong>POS (权益证明）</strong>：根据每个节点所占代币的比例和时间。节点记账权的获得难度与节点持有的权益成反比。</li>
+<li><strong>DPOS（股份授权证明）</strong>：持币者投出可以代理验证和记账的节点。<ul>
+<li>优点：降低运行网络的成本， 降低维护网络安全的费用。</li>
+</ul>
+</li>
+</ol>
+<p>现阶段，有比特币，以太坊，瑞波，超级账本等区块链的技术，但是前三种我就不在这里详细解释和说明，我会详细的介绍区块链商用平台：<strong>超级账本</strong></p>
+<h2 id="超级账本的系统架构"><a href="#超级账本的系统架构" class="headerlink" title="超级账本的系统架构"></a>超级账本的系统架构</h2><p>Hyperledger Fabric 1.0 是一种通用的区块链技术，有以下几个特点：</p>
+<ol>
+<li><strong>模块插件化</strong></li>
+<li><strong>充分利用容器技术</strong>：不仅节点使用容器作为运行环境，链码也默认运行在安全的容易中，应用程序或者外部不能直接操作链码，必须通过背书节点提供的接口转发给链码来执行。</li>
+<li><p><strong>可扩展性</strong>：节点分为背书节点（Endorser), 排序服务节点（Orderer），记账节点（Committer)。</p>
+<ul>
+<li>节点可以加入不同的channel</li>
+<li>不同链码可以运行在不同的节点上</li>
+</ul>
+</li>
+<li><p><strong>安全性</strong>：MSP(Membership Service Provider)模块验证， 授权最终用户。多链多通道有利于设计数据隔离。</p>
+</li>
+</ol>
+<h3 id="系统逻辑架构"><a href="#系统逻辑架构" class="headerlink" title="系统逻辑架构"></a>系统逻辑架构</h3><h4 id="应用程序角度"><a href="#应用程序角度" class="headerlink" title="应用程序角度"></a>应用程序角度</h4><ul>
+<li>身份管理</li>
+<li>账本管理</li>
+<li>交易管理</li>
+<li>智能合约</li>
+</ul>
+<h4 id="底层角度"><a href="#底层角度" class="headerlink" title="底层角度"></a>底层角度</h4><ul>
+<li>成员管理（MSP)</li>
+<li>共识服务</li>
+<li>链码服务</li>
+<li>安全和密码服务</li>
+</ul>
+<h3 id="网络节点架构"><a href="#网络节点架构" class="headerlink" title="网络节点架构"></a>网络节点架构</h3><ol>
+<li>客户端节点： 客户端或者应用程序</li>
+<li>Peer节点：所有的Peer节点都是记账节点，负责验证从排序服务节点区块里的交易，维护状态数据和账本的副本。</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+          
+            <a href="/tags/hyperledger/" rel="tag"># hyperledger</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/02/letcode/" rel="next" title="leetcode 编码记录">
+                <i class="fa fa-chevron-left"></i> leetcode 编码记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Damon Huang</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HyperLerger-Fabric-概述"><span class="nav-number">1.</span> <span class="nav-text">HyperLerger Fabric 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链概述"><span class="nav-number">1.1.</span> <span class="nav-text">区块链概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链层次模型"><span class="nav-number">1.1.1.</span> <span class="nav-text">区块链层次模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链的共识算法"><span class="nav-number">1.1.2.</span> <span class="nav-text">区块链的共识算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超级账本的系统架构"><span class="nav-number">1.2.</span> <span class="nav-text">超级账本的系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统逻辑架构"><span class="nav-number">1.2.1.</span> <span class="nav-text">系统逻辑架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用程序角度"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">应用程序角度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#底层角度"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">底层角度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络节点架构"><span class="nav-number">1.2.2.</span> <span class="nav-text">网络节点架构</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Damon Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="coding,leetcode,algorithm,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="leetCode 学习笔记 一刷 leetcode，因此只要通过就是完成。等待二刷完善和改进代码！！！！！  数组从排序数组中删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 示例 1:12345给定数组 nums = [1,1,2], 函数应该返">
+<meta name="keywords" content="coding,leetcode,algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode 编码记录">
+<meta property="og:url" content="http://www.love-yewenling.cn/2019/09/02/letcode/index.html">
+<meta property="og:site_name" content="Where is the life">
+<meta property="og:description" content="leetCode 学习笔记 一刷 leetcode，因此只要通过就是完成。等待二刷完善和改进代码！！！！！  数组从排序数组中删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 示例 1:12345给定数组 nums = [1,1,2], 函数应该返">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="c:/Users/HUANGDA/AppData/Local/Temp/1531916725696.png">
+<meta property="og:updated_time" content="2019-09-02T19:06:29.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode 编码记录">
+<meta name="twitter:description" content="leetCode 学习笔记 一刷 leetcode，因此只要通过就是完成。等待二刷完善和改进代码！！！！！  数组从排序数组中删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 示例 1:12345给定数组 nums = [1,1,2], 函数应该返">
+<meta name="twitter:image" content="c:/Users/HUANGDA/AppData/Local/Temp/1531916725696.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.love-yewenling.cn/2019/09/02/letcode/">
+
+
+
+
+
+  <title>leetcode 编码记录 | Where is the life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Where is the life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Love YWL</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.love-yewenling.cn/2019/09/02/letcode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Damon Huang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Where is the life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode 编码记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-02T19:06:29+00:00">
+                2019-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="leetCode-学习笔记"><a href="#leetCode-学习笔记" class="headerlink" title="leetCode 学习笔记"></a>leetCode 学习笔记</h1><blockquote>
+<p>一刷 leetcode，因此只要通过就是完成。等待二刷完善和改进代码！！！！！</p>
+</blockquote>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="从排序数组中删除重复项"><a href="#从排序数组中删除重复项" class="headerlink" title="从排序数组中删除重复项"></a>从排序数组中删除重复项</h3><p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
+<p><strong>示例 1:</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定数组 nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>], </span><br><span class="line"></span><br><span class="line">函数应该返回新的长度 <span class="number">2</span>, 并且原数组 nums 的前两个元素被修改为 <span class="number">1</span>, <span class="number">2</span>。 </span><br><span class="line"></span><br><span class="line">你不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure></p>
+<p><strong>示例 2:</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line"></span><br><span class="line">函数应该返回新的长度 <span class="number">5</span>, 并且原数组 nums 的前五个元素被修改为 <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>。</span><br><span class="line"></span><br><span class="line">你不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure></p>
+<p><strong>说明:</strong></p>
+<p>为什么返回数值是整数，但输出的答案是数组呢?</p>
+<p>请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝</span></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">len</span> = removeDuplicates(nums);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在函数里修改输入数组对于调用者是可见的。</span></span><br><span class="line"><span class="comment">// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">len</span>; i++) &#123;</span><br><span class="line"><span class="built_in">print</span>(nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析：</p>
+</blockquote>
+<p><strong> 方案1 </strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> len(nums)</span><br><span class="line"></span><br><span class="line">        lastDiffIndex = <span class="number">0</span></span><br><span class="line">        cur = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> cur &lt; len(nums):</span><br><span class="line">            <span class="keyword">if</span> nums[lastDiffIndex] != nums[cur]:</span><br><span class="line">                lastDiffIndex += <span class="number">1</span></span><br><span class="line">                nums[lastDiffIndex] = nums[cur]</span><br><span class="line">                cur += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cur += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> lastDiffIndex + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>s代表<strong>start</strong>, e代表着<strong>end</strong>，我们算法就是如果start和end对应的数字相同时，end继续前进。如果start和end的数字不同，start + 1 替换成end的数字，end继续前进。</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">step1:</span><br><span class="line">   <span class="number"> 1 </span>1<span class="number"> 1 </span>2<span class="number"> 2 </span>4 5</span><br><span class="line">    s e</span><br><span class="line">step2:</span><br><span class="line">   <span class="number"> 1 </span>1<span class="number"> 1 </span>2<span class="number"> 2 </span>4 5</span><br><span class="line">    s   e</span><br><span class="line">step3:</span><br><span class="line">   <span class="number"> 1 </span>1<span class="number"> 1 </span>2<span class="number"> 2 </span>4<span class="number"> 5 </span>  ----&gt;  <span class="number"> 1 </span>2<span class="number"> 1 </span>2<span class="number"> 2 </span>4 5</span><br><span class="line">    s     e                   s   e</span><br><span class="line">step4:</span><br><span class="line">   <span class="number"> 1 </span>2<span class="number"> 1 </span>2<span class="number"> 2 </span>4 5</span><br><span class="line">      s     e</span><br><span class="line">step5:</span><br><span class="line">   <span class="number"> 1 </span>2<span class="number"> 1 </span>2<span class="number"> 2 </span>4<span class="number"> 5 </span> ----&gt;   <span class="number"> 1 </span>2<span class="number"> 4 </span>2<span class="number"> 2 </span>4 5</span><br><span class="line">      s       e                 s     e</span><br><span class="line">step5:</span><br><span class="line">   <span class="number"> 1 </span>2<span class="number"> 4 </span>2<span class="number"> 2 </span>4<span class="number"> 5 </span> ----&gt;   <span class="number"> 1 </span>2<span class="number"> 4 </span>5<span class="number"> 2 </span>4 5</span><br><span class="line">        s       e                 s     e</span><br><span class="line">    result is length is the index of s.</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="买卖股票的最佳时机-II"><a href="#买卖股票的最佳时机-II" class="headerlink" title="买卖股票的最佳时机 II"></a>买卖股票的最佳时机 II</h3><p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。<br>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。<br>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。<br><strong>示例 1:</strong><br><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [7,1,5,3,6,4]</span><br><span class="line">输出: 7</span><br><span class="line">解释: 在第<span class="number"> 2 </span>天（股票价格 = 1）的时候买入，在第<span class="number"> 3 </span>天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 =<span class="number"> 4 </span>。</span><br><span class="line">     随后，在第<span class="number"> 4 </span>天（股票价格 = 3）的时候买入，在第<span class="number"> 5 </span>天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 =<span class="number"> 3 </span>。</span><br></pre></td></tr></table></figure></p>
+<p><strong>示例 2:</strong><br><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,3,4,5]</span><br><span class="line">输出: 4</span><br><span class="line">解释: 在第<span class="number"> 1 </span>天（股票价格 = 1）的时候买入，在第<span class="number"> 5 </span>天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 =<span class="number"> 4 </span>。</span><br><span class="line">     注意你不能在第<span class="number"> 1 </span>天和第<span class="number"> 2 </span>天接连购买股票，之后再将它们卖出。</span><br><span class="line">     因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。</span><br></pre></td></tr></table></figure></p>
+<p><strong>示例 3:</strong><br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [7,6,4,3,1]</span></span><br><span class="line"><span class="section">输出: 0</span></span><br><span class="line"><span class="section">解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析：</p>
+</blockquote>
+<p><strong>方案1</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">        </span><br><span class="line">        startIdx = <span class="number">0</span></span><br><span class="line">        end = <span class="number">1</span></span><br><span class="line">        sum = <span class="number">0</span></span><br><span class="line">        priceLen = len(prices)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> priceLen == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> end &lt; priceLen:</span><br><span class="line">            <span class="keyword">if</span> prices[startIdx] &lt; prices[end]:</span><br><span class="line">                <span class="keyword">if</span> end + <span class="number">1</span> &lt; priceLen <span class="keyword">and</span> prices[end] &gt; prices[end + <span class="number">1</span>]:</span><br><span class="line">                    sum += prices[end] - prices[startIdx]</span><br><span class="line">                    startIdx = end + <span class="number">1</span></span><br><span class="line">                    end = startIdx + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    end += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                startIdx += <span class="number">1</span></span><br><span class="line">                end += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> startIdx &lt; priceLen - <span class="number">1</span> <span class="keyword">and</span> prices[startIdx] &lt; prices[priceLen - <span class="number">1</span>]:</span><br><span class="line">            sum += prices[priceLen - <span class="number">1</span>] - prices[startIdx]</span><br><span class="line">        <span class="keyword">return</span> sum</span><br></pre></td></tr></table></figure></p>
+<p>解析：符合贪心算法，最大子区间的累加，当出现转折点时，股票卖出</p>
+<p><strong>方案2</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        sum = <span class="number">0</span></span><br><span class="line">        nums_len = len(nums)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> nums_len &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> sum</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(nums_len - <span class="number">1</span>):</span><br><span class="line">           <span class="keyword">if</span> nums[i] &lt; nums[i + <span class="number">1</span>]:</span><br><span class="line">               sum += nums[i + <span class="number">1</span>] - nums[i]</span><br><span class="line">        <span class="keyword">return</span> sum</span><br></pre></td></tr></table></figure>
+<p>解析：其实思路相同    x1,x2,x3,x4 –&gt;  x4 - x1 == (x2 - x1) + (x3 - x2) + (x4 - x3)</p>
+<hr>
+<h3 id="旋转数组"><a href="#旋转数组" class="headerlink" title="旋转数组"></a>旋转数组</h3><p>给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。<br><strong><br>示例 1:</strong><br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">[1,2,3,4,5,6,7]</span> 和 k = <span class="number">3</span></span><br><span class="line">输出: <span class="string">[5,6,7,1,2,3,4]</span></span><br><span class="line">解释:</span><br><span class="line">向右旋转 <span class="number">1</span> 步: <span class="string">[7,1,2,3,4,5,6]</span></span><br><span class="line">向右旋转 <span class="number">2</span> 步: <span class="string">[6,7,1,2,3,4,5]</span></span><br><span class="line">向右旋转 <span class="number">3</span> 步: <span class="string">[5,6,7,1,2,3,4]</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>示例 2:</strong><br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="string">-1</span>,<span class="string">-100</span>,3,99] 和 k = 2</span><br><span class="line">输出: [3,99,<span class="string">-1</span>,<span class="string">-100</span>]</span><br><span class="line">解释: </span><br><span class="line">向右旋转 1 步: [99,<span class="string">-1</span>,<span class="string">-100</span>,3]</span><br><span class="line">向右旋转 2 步: [3,99,<span class="string">-1</span>,<span class="string">-100</span>]</span><br></pre></td></tr></table></figure></p>
+<p><strong>说明:</strong></p>
+<blockquote>
+<p>尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。<br>要求使用空间复杂度为 O(1) 的原地算法。</p>
+</blockquote>
+<p><strong>方案1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        nums_len = len(nums)</span><br><span class="line">        nums[:] =  nums[nums_len - k:] + nums[:nums_len-k]</span><br></pre></td></tr></table></figure>
+<p>解析：其实并没有运用到任何算法，只是用到了Python的切片来完成</p>
+<hr>
+<h3 id="存在重复"><a href="#存在重复" class="headerlink" title="存在重复"></a>存在重复</h3><p>给定一个整数数组，判断是否存在重复元素。</p>
+<p>如果任何值在数组中出现至少两次，函数返回 true。如果数组中每个元素都不相同，则返回 false。</p>
+<p><strong>示例 1:</strong><br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [1,2,3,1]</span></span><br><span class="line"><span class="section">输出: true</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>示例 2:</strong><br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [1,2,3,4]</span></span><br><span class="line"><span class="section">输出: false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>示例 3:</strong><br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">1,1,1,3</span>,<span class="number">3,4,3,2</span>,<span class="number">4</span>,<span class="number">2</span>]</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
+<p><strong>方案1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        maps = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> maps.get(num) == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">               maps[num] = num</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="加一"><a href="#加一" class="headerlink" title="加一"></a>加一</h3><p>给定一个<strong>非负整数</strong>组成的<strong>非空</strong>数组，在该数的基础上加一，返回一个新的数组。</p>
+<p>最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。</p>
+<p>你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [1,2,3]</span></span><br><span class="line"><span class="section">输出: [1,2,4]</span></span><br><span class="line"><span class="section">解释: 输入数组表示数字 123。</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [4,3,2,1]</span></span><br><span class="line"><span class="section">输出: [4,3,2,2]</span></span><br><span class="line"><span class="section">解释: 输入数组表示数字 4321。</span></span><br></pre></td></tr></table></figure>
+<p><strong>方案1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">plusOne</span><span class="params">(self, digits)</span>:</span></span><br><span class="line">        digits.reverse()</span><br><span class="line">        divisor = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> index, digit <span class="keyword">in</span> enumerate(digits):</span><br><span class="line">            digits[index] = (digit + divisor) % <span class="number">10</span></span><br><span class="line">            divisor = (digit + divisor) // <span class="number">10</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> divisor == <span class="number">1</span>:</span><br><span class="line">            digits.append(divisor)</span><br><span class="line"></span><br><span class="line">        digits.reverse()</span><br><span class="line">        <span class="keyword">return</span> digits</span><br></pre></td></tr></table></figure>
+<p>首先考虑到就是最高为有可能会进1， 所以先把数组<strong>反转</strong>之后循环计算，最后如果最高为是<strong>9</strong>并且补1，那么只要在数组最后添加1就满足。最最后，只要把数组<strong>反转</strong>回来就大功告成。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="反转字符串"><a href="#反转字符串" class="headerlink" title="反转字符串"></a>反转字符串</h3><p>请编写一个函数，其功能是将输入的字符串反转过来。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">s</span> = <span class="string">"hello"</span></span><br><span class="line">返回：<span class="string">"olleh"</span></span><br></pre></td></tr></table></figure>
+<p><strong>方案1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseString</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        s_array = list(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range((len(s_array) // <span class="number">2</span>)):</span><br><span class="line">            endInx = len(s_array) - i - <span class="number">1</span></span><br><span class="line">            s_array[i], s_array[endInx] = s_array[endInx], s_array[i]</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(s_array)</span><br></pre></td></tr></table></figure>
+<p>思路: 头尾交换</p>
+<h3 id="颠倒整数"><a href="#颠倒整数" class="headerlink" title="颠倒整数"></a>颠倒整数</h3><p>给定一个 32 位有符号整数，将整数中的数字进行反转。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 123</span></span><br><span class="line"><span class="section">输出: 321</span></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 2:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: -123</span></span><br><span class="line"><span class="section">输出: -321</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例 3:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 120</span></span><br><span class="line"><span class="section">输出: 21</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意:</strong></p>
+<p>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。</p>
+<p><strong>方案1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        isPositive = <span class="literal">True</span> <span class="keyword">if</span> x &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">False</span></span><br><span class="line">        num = list(str(abs(x)))</span><br><span class="line">        num.reverse()</span><br><span class="line">        new_num = int(<span class="string">''</span>.join(num))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> isPositive:</span><br><span class="line">            <span class="keyword">if</span> new_num &gt; <span class="number">2</span> ** <span class="number">31</span> - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> new_num</span><br><span class="line">        <span class="keyword">elif</span> new_num &gt; <span class="number">2</span> ** <span class="number">31</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> new_num * <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\HUANGDA\AppData\Local\Temp\1531916725696.png" alt="53191672569"></p>
+<p>思路：变成字符串来处理，当然也是因为python语言的便利性</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/coding/" rel="tag"># coding</a>
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/02/vscode_plugin/" rel="next" title="Visual Studio Code">
+                <i class="fa fa-chevron-left"></i> Visual Studio Code
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/02/HyperLedger/" rel="prev" title="HyperLerger Fabric 学习笔记">
+                HyperLerger Fabric 学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Damon Huang</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetCode-学习笔记"><span class="nav-number">1.</span> <span class="nav-text">leetCode 学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从排序数组中删除重复项"><span class="nav-number">1.1.1.</span> <span class="nav-text">从排序数组中删除重复项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#买卖股票的最佳时机-II"><span class="nav-number">1.1.2.</span> <span class="nav-text">买卖股票的最佳时机 II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转数组"><span class="nav-number">1.1.3.</span> <span class="nav-text">旋转数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在重复"><span class="nav-number">1.1.4.</span> <span class="nav-text">存在重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加一"><span class="nav-number">1.1.5.</span> <span class="nav-text">加一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.2.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反转字符串"><span class="nav-number">1.2.1.</span> <span class="nav-text">反转字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颠倒整数"><span class="nav-number">1.2.2.</span> <span class="nav-text">颠倒整数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Damon Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
